@@ -4,11 +4,11 @@ import java.util.List;
 
 public abstract class Student {
     private List<Course> courses;
-    private int id;
-    private String firstName;
-    private String familyName;
-    private int age;
-    private String address;
+    private final int id;
+    private final String firstName;
+    private final String familyName;
+    private final int age;
+    private final String address;
 
     public Student(int id, String firstName, String familyName, int age, String address) {
         this.id = id;

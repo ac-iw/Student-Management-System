@@ -1,14 +1,16 @@
 package com.company;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class ManagementSystem implements IManagementSystemOperations{
-    private Map<Integer, Student> studentMap;
-    private Map<Integer, Course> courseMap;
-    // Static methods?
-    public ManagementSystem() {
+public class InMemoryRepository extends Repository {
+
+    private final Map<Integer, Student> studentMap;
+    private final Map<Integer, Course> courseMap;
+
+    public InMemoryRepository() {
         studentMap = new HashMap<Integer, Student>();
         courseMap = new HashMap<Integer, Course>();
     }
@@ -34,24 +36,26 @@ public class ManagementSystem implements IManagementSystemOperations{
         return students;
     }
 
+    @Override
     public boolean studentExists(int studentId) {
-        if (studentMap.get(studentId) == null) {
-            return false;
-        }
-        return true;
+        return studentMap.get(studentId) != null;
     }
 
-    //add to interface
+    @Override
     public void addCourse(Course newCourse) {
         courseMap.put(newCourse.getId(), newCourse);
     }
 
+    @Override
     public Course getCourse(int courseId) {
         return courseMap.get(courseId);
     }
 
+    @Override
     public List<Course> getCourses() {
         List<Course> courses = new ArrayList<>(courseMap.values());
         return courses;
     }
+
+
 }
