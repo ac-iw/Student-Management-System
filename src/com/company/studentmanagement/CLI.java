@@ -1,17 +1,23 @@
-package com.company;
-import java.util.*;
+package com.company.studentmanagement;
 
-public class StudentManagementSystem {
+import com.company.studentmanagement.domain.Course;
+import com.company.studentmanagement.domain.FullTimeStudent;
+import com.company.studentmanagement.domain.PartTimeStudent;
+import com.company.studentmanagement.domain.Student;
+import com.company.studentmanagement.repository.StudentRepository;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
+
+public class CLI {
     private static Scanner inputReader;
-    private static Repository repository;
+    private static StudentRepository repository;
 
-    public StudentManagementSystem(Repository repository) {
-        StudentManagementSystem.repository = repository;
+
+    public static void startSystem(StudentRepository r) {
+        repository = r;
         inputReader = new Scanner(System.in);
-    }
-
-    public void startSystem() {
         createCourses();
         createStudents();
         boolean finished = startLoop();
@@ -20,7 +26,7 @@ public class StudentManagementSystem {
         }
     }
 
-    private boolean startLoop() {
+    private static boolean startLoop() {
         System.out.println("Welcome to UOA's Student Management System\n\n" +
                 "To add a student, enter 1\n" +
                 "To remove a student, enter 2\n" +
@@ -49,7 +55,7 @@ public class StudentManagementSystem {
     }
 
     //refactor into two functions
-    private void addStudent() {
+    private static void addStudent() {
         System.out.println("Adding a new student ... \n\n" +
                 "Please enter the following credentials of the new student:");
         System.out.println("Id: ");
@@ -76,7 +82,7 @@ public class StudentManagementSystem {
         System.out.println("Please enter the students courses by Id, if you are done enter -1");
         int courseId = 0;
         while (courseId != -1) {
-            System.out.printf("Course %d: %n", studentsCourses.size()+1);
+            System.out.printf("Course %d: %n", studentsCourses.size() + 1);
             courseId = Integer.parseInt(inputReader.nextLine());
             if (courseId != -1) {
                 studentsCourses.add(repository.getCourse(courseId));
@@ -95,9 +101,9 @@ public class StudentManagementSystem {
         System.out.println("Student Added!\n");
     }
 
-    private void removeStudent() {
+    private static void removeStudent() {
         System.out.println("Please enter the students id:");
-        int studentId =Integer.parseInt((inputReader.nextLine()));
+        int studentId = Integer.parseInt((inputReader.nextLine()));
         System.out.println("Searching for student ... \n");
         Student removedStudent = repository.removeStudent(studentId);
         if (removedStudent == null) {
@@ -109,9 +115,9 @@ public class StudentManagementSystem {
         }
     }
 
-    private void viewStudent() {
+    private static void viewStudent() {
         System.out.println("Please enter the students id:");
-        int studentId =Integer.parseInt((inputReader.nextLine()));
+        int studentId = Integer.parseInt((inputReader.nextLine()));
         System.out.println("Searching for a student ... \n");
         Student foundStudent = repository.viewStudent(studentId);
         if (foundStudent == null) {
@@ -119,32 +125,32 @@ public class StudentManagementSystem {
         } else {
             System.out.println(foundStudent + "\n\nCourses");
             List<Course> studentCourses = foundStudent.getCourses();
-            for (Course c: studentCourses) {
+            for (Course c : studentCourses) {
                 System.out.println(c);
             }
         }
     }
 
-    private void viewStudents() {
+    private static void viewStudents() {
         System.out.println("Viewing all students ... \n\nid | first name | last name\n");
         List<Student> studentList = repository.viewStudents();
         StringBuilder studentText = new StringBuilder();
-        for (Student s: studentList) {
+        for (Student s : studentList) {
             studentText.append(s.printKeyDetails());
         }
         System.out.println(studentText);
     }
 
-    private String viewCourseList() {
+    private static String viewCourseList() {
         List<Course> courseList = repository.getCourses();
         StringBuilder courseText = new StringBuilder();
-        for (Course c: courseList) {
+        for (Course c : courseList) {
             courseText.append(c.toString()).append("\n");
         }
         return courseText.toString();
     }
 
-    private void createStudents() {
+    private static void createStudents() {
         List<Course> courses = repository.getCourses();
         List<Course> student1Courses = new ArrayList<>();
         student1Courses.add(courses.get(0));
@@ -162,7 +168,7 @@ public class StudentManagementSystem {
         repository.addStudent(student2);
     }
 
-    private void createCourses() {
+    private static void createCourses() {
         Course course1 = new Course(1, "Maths 350", "Topology");
         Course course2 = new Course(2, "Compsci 361", "Machine Learning");
         Course course3 = new Course(3, "Phil 105", "Critical Thinking");
@@ -173,3 +179,4 @@ public class StudentManagementSystem {
         repository.addCourse(course4);
     }
 }
+
