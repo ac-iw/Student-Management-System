@@ -4,11 +4,15 @@ import java.util.*;
 public class StudentManagementSystem {
 
     private static Scanner inputReader;
-    private static Repository repository;
+    private static IRepository repository;
 
-    public StudentManagementSystem(Repository repository) {
-        StudentManagementSystem.repository = repository;
+    public StudentManagementSystem(IRepository repository) {
+        this.repository = repository;
         inputReader = new Scanner(System.in);
+    }
+
+    public void changeRepository(IRepository repository) {
+        this.repository = repository;
     }
 
     public void startSystem() {

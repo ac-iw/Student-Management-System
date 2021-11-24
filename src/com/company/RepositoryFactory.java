@@ -2,7 +2,7 @@ package com.company;
 
 public class RepositoryFactory {
 
-    public static Repository getRepository(String repoType) {
+    public static IRepository getRepository(String repoType) {
         if (repoType == "Database") {
             return new DatabaseRepository();
         } else if (repoType == "InMemory") {

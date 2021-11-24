@@ -3,7 +3,7 @@ package com.company;
 import java.util.ArrayList;
 import java.util.List;
 
-public class DatabaseRepository extends Repository {
+public class DatabaseRepository implements IRepository {
 
     public DatabaseRepository() {}
 
