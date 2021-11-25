@@ -1,16 +1,20 @@
-package com.company;
+package com.company.studentmanagement.repository.inmemory;
+
+import com.company.studentmanagement.domain.Course;
+import com.company.studentmanagement.domain.Student;
+import com.company.studentmanagement.repository.StudentRepository;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class InMemoryRepository implements IRepository {
+public class InMemoryStudentRepository implements StudentRepository {
 
     private final Map<Integer, Student> studentMap;
     private final Map<Integer, Course> courseMap;
 
-    public InMemoryRepository() {
+    public InMemoryStudentRepository() {
         studentMap = new HashMap<Integer, Student>();
         courseMap = new HashMap<Integer, Course>();
     }

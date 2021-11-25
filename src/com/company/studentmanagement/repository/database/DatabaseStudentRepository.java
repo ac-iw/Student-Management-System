@@ -1,11 +1,15 @@
-package com.company;
+package com.company.studentmanagement.repository.database;
 
-import java.util.ArrayList;
+import com.company.studentmanagement.domain.Course;
+import com.company.studentmanagement.domain.Student;
+import com.company.studentmanagement.repository.StudentRepository;
+
 import java.util.List;
 
-public class DatabaseRepository implements IRepository {
 
-    public DatabaseRepository() {}
+public class DatabaseStudentRepository implements StudentRepository {
+
+    public DatabaseStudentRepository() {}
 
     @Override
     public void addStudent(Student newStudent) {

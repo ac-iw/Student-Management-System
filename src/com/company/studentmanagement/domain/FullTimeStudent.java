@@ -1,4 +1,4 @@
-package com.company;
+package com.company.studentmanagement.domain;
 
 import java.util.List;
 

@@ -1,4 +1,4 @@
-package com.company;
+package com.company.studentmanagement.domain;
 
 public class Course {
     private final int id;
