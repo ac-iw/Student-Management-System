@@ -1,0 +1,11 @@
+com\company\studentmanagement\repository\StudentRepositoryFactory.class
+com\company\studentmanagement\domain\PartTimeStudent.class
+com\company\studentmanagement\repository\inmemory\InMemoryStudentRepository.class
+com\company\studentmanagement\domain\FullTimeStudent.class
+com\company\studentmanagement\domain\Course.class
+com\company\studentmanagement\repository\StudentRepository.class
+com\company\studentmanagement\repository\database\DatabaseStudentRepository.class
+com\company\studentmanagement\StudentManagementService.class
+com\company\studentmanagement\domain\Student.class
+com\company\studentmanagement\StudentManagementSystem.class
+com\company\studentmanagement\CLI.class
