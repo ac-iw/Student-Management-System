@@ -1,7 +1,5 @@
 package com.company.studentmanagement.dtos;
 
-import com.company.studentmanagement.domain.Course;
-
 import java.util.List;
 
 public class StudentIn {
