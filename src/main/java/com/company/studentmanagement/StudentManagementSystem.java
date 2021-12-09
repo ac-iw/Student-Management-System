@@ -1,15 +1,13 @@
 package com.company.studentmanagement;
 
-import com.company.studentmanagement.repository.StudentRepositoryFactory;
-import com.company.studentmanagement.repository.StudentRepository;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+@SpringBootApplication
 public class StudentManagementSystem {
 
     public static void main(String[] args) {
-
-        StudentRepository repository = StudentRepositoryFactory.getRepository("InMemory");
-        StudentManagementService studentManagementService = new StudentManagementService(repository);
+        SpringApplication.run(StudentManagementSystem.class, args);
     }
-
 
 }

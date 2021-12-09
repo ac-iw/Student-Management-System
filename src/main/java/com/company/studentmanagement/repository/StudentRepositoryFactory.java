@@ -5,7 +5,7 @@ import com.company.studentmanagement.repository.inmemory.InMemoryStudentReposito
 
 public class StudentRepositoryFactory {
 
-    public static StudentRepository getRepository(String repoType) {
+    public StudentRepository getRepository(String repoType) {
         if (repoType == "Database") {
             return new DatabaseStudentRepository();
         } else if (repoType == "InMemory") {
