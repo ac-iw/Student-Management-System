@@ -3,6 +3,7 @@ package com.company.studentmanagement.repository.inmemory;
 import com.company.studentmanagement.domain.Course;
 import com.company.studentmanagement.domain.Student;
 import com.company.studentmanagement.repository.StudentRepository;
+import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
 import java.util.HashMap;

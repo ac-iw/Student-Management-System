@@ -6,7 +6,6 @@ import com.company.studentmanagement.repository.StudentRepository;
 
 import java.util.List;
 
-
 public class DatabaseStudentRepository implements StudentRepository {
 
     public DatabaseStudentRepository() {}
