@@ -3,6 +3,8 @@ package com.company.studentmanagement.repository.inmemory;
 import com.company.studentmanagement.domain.Course;
 import com.company.studentmanagement.domain.Student;
 import com.company.studentmanagement.repository.StudentRepository;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
@@ -10,6 +12,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+@ConditionalOnProperty(name = "repository.type", havingValue = "inmemory")
+@Component
 public class InMemoryStudentRepository implements StudentRepository {
 
     private final Map<Integer, Student> studentMap;
@@ -62,5 +66,7 @@ public class InMemoryStudentRepository implements StudentRepository {
         return courses;
     }
 
+    @Override
+    public void removeData() {}
 
 }

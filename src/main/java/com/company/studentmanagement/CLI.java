@@ -4,6 +4,8 @@ import com.company.studentmanagement.domain.Course;
 import com.company.studentmanagement.domain.FullTimeStudent;
 import com.company.studentmanagement.domain.PartTimeStudent;
 import com.company.studentmanagement.domain.Student;
+import com.company.studentmanagement.helper.ListConverter;
+import com.company.studentmanagement.helper.PopulateDatabase;
 import com.company.studentmanagement.repository.StudentRepository;
 
 import java.util.ArrayList;
@@ -18,8 +20,7 @@ public class CLI {
     public static void startSystem(StudentRepository r) {
         repository = r;
         inputReader = new Scanner(System.in);
-        createCourses();
-        createStudents();
+        PopulateDatabase.populateDatabase(r);
         boolean finished = startLoop();
         while (!finished) {
             finished = startLoop();
@@ -78,16 +79,18 @@ public class CLI {
         System.out.println("Id | Name| Description");
         System.out.println(courseList);
 
-        List<Course> studentsCourses = new ArrayList<>();
+        List<Integer> studentsCoursesById = new ArrayList<>();
         System.out.println("Please enter the students courses by Id, if you are done enter -1");
         int courseId = 0;
         while (courseId != -1) {
-            System.out.printf("Course %d: %n", studentsCourses.size() + 1);
+            System.out.printf("Course %d: %n", studentsCoursesById.size() + 1);
             courseId = Integer.parseInt(inputReader.nextLine());
             if (courseId != -1) {
-                studentsCourses.add(repository.getCourse(courseId));
+                studentsCoursesById.add(courseId);
             }
         }
+
+        List<Course> studentsCourses = ListConverter.IdToCourse(studentsCoursesById, repository);
 
         if (studentsCourses.size() > 2) {
             FullTimeStudent newFullTimeStudent = new FullTimeStudent(id, firstName, familyName, age, address,
@@ -148,35 +151,6 @@ public class CLI {
             courseText.append(c.toString()).append("\n");
         }
         return courseText.toString();
-    }
-
-    private static void createStudents() {
-        List<Course> courses = repository.getCourses();
-        List<Course> student1Courses = new ArrayList<>();
-        student1Courses.add(courses.get(0));
-        student1Courses.add(courses.get(1));
-        student1Courses.add(courses.get(2));
-        student1Courses.add(courses.get(3));
-        List<Course> student2Courses = new ArrayList<>();
-        student2Courses.add(courses.get(0));
-        student2Courses.add(courses.get(1));
-        Student student1 = new FullTimeStudent(1, "Adam", "Chappell", 20, "Sun",
-                student1Courses);
-        Student student2 = new PartTimeStudent(2, "John", "Appleseed", 37, "Moon",
-                student2Courses);
-        repository.addStudent(student1);
-        repository.addStudent(student2);
-    }
-
-    private static void createCourses() {
-        Course course1 = new Course(1, "Maths 350", "Topology");
-        Course course2 = new Course(2, "Compsci 361", "Machine Learning");
-        Course course3 = new Course(3, "Phil 105", "Critical Thinking");
-        Course course4 = new Course(4, "Stats 201", "Data Analysis");
-        repository.addCourse(course1);
-        repository.addCourse(course2);
-        repository.addCourse(course3);
-        repository.addCourse(course4);
     }
 }
 

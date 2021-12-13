@@ -2,13 +2,14 @@ package com.company.studentmanagement.domain;
 
 import java.util.List;
 
-public abstract class Student {
-    private List<Course> courses;
+public class Student {
     private final int id;
     private final String firstName;
     private final String familyName;
     private final int age;
     private final String address;
+    private List<Course> courses;
+
 
     public Student(int id, String firstName, String familyName, int age, String address) {
         this.id = id;

@@ -5,6 +5,12 @@ public class Course {
     private final String name;
     private final String description;
 
+    public Course() {
+        this.id = -1;
+        this.name = null;
+        this.description = null;
+    }
+
     public Course(int id, String name, String description) {
         this.id = id;
         this.name = name;

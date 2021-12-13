@@ -23,4 +23,6 @@ public interface StudentRepository {
 
     List<Course> getCourses();
 
+    void removeData();
+
 }
